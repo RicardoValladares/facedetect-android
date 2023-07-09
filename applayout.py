@@ -44,8 +44,8 @@ class ButtonsLayout(RelativeLayout):
         try:
             self.parent.edge_detect.save()
             multipart_form_data = (('image', ('rostro.jpg', open('rostro.jpg', 'rb'))),('action', (None, 'store')))
-            response = requests.post('https://facedetect.com/identificar', files=multipart_form_data)
-            #response = requests.post('http://facedetect.com:5001/identificar', files=multipart_form_data)
+            #response = requests.post('https://facedetect.com/identificar', files=multipart_form_data)
+            response = requests.post('http://facedetect.com:5001/identificar', files=multipart_form_data)
             self.ids.identify.text = str( response.content.decode('utf-8') )
             self.parent.edge_detect.recognition(str( response.content.decode('utf-8') ))
             time.sleep(5)
