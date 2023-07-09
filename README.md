@@ -1,7 +1,7 @@
 # Deteccion de Rostros (alpha)
-Este proyecto depende del proyecto Rostro Biométrico(https://gitlab.com/RicardoValladares/facedetect), con este proyecto se pretende usar la interfaz grafica de android para disminuir el consumo de recursos que se tiene con la interfaz web. 
+Este proyecto depende del proyecto Rostro Biométrico(https://github.com/RicardoValladares/FaceDetect), con este proyecto se pretende usar la interfaz grafica de android para disminuir el consumo de recursos que se tiene con la interfaz web. 
 
-Este proyecto requiere que el servidor de Rostro Biométrico(https://gitlab.com/RicardoValladares/facedetect) este en ejecucion, asi como tambien tener instalado python y sus dependencias, para instalar las dependencias puedes usar el comando:
+Este proyecto requiere que el servidor de Rostro Biométrico(https://github.com/RicardoValladares/FaceDetect) este en ejecucion, asi como tambien tener instalado python y sus dependencias, para instalar las dependencias puedes usar el comando:
 
 ```bash
 make dependens
@@ -19,6 +19,6 @@ Librerías usadas:
 - Kivy (https://kivy.org/)
 
 Servidor usado:
-- Rostro Biométrico (https://gitlab.com/RicardoValladares/facedetect)
+- Rostro Biométrico (https://github.com/RicardoValladares/FaceDetect)
 
 
