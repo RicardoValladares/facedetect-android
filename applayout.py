@@ -13,8 +13,6 @@ class AppLayout(FloatLayout):
     edge_detect = ObjectProperty()
         
 class ButtonsLayout(RelativeLayout):
-    normal = StringProperty()
-    down = StringProperty()
     isrunning = False
     segundos = 0
     kwargs = None
@@ -44,8 +42,7 @@ class ButtonsLayout(RelativeLayout):
         try:
             self.parent.edge_detect.save()
             multipart_form_data = (('image', ('rostro.jpg', open('rostro.jpg', 'rb'))),('action', (None, 'store')))
-            #response = requests.post('https://facedetect.com/identificar', files=multipart_form_data)
-            response = requests.post('http://facedetect.com:5001/identificar', files=multipart_form_data)
+            response = requests.post(self.ids.input.text, files=multipart_form_data)
             self.ids.identify.text = str( response.content.decode('utf-8') )
             self.parent.edge_detect.recognition(str( response.content.decode('utf-8') ))
             time.sleep(5)
@@ -76,6 +73,7 @@ class ButtonsLayout(RelativeLayout):
     def select_camera(self, facing):
         self.parent.edge_detect.select_camera(facing)
 
+
 Builder.load_string("""
 <AppLayout>:
     edge_detect: self.ids.preview
@@ -84,27 +82,39 @@ Builder.load_string("""
         id:preview
     ButtonsLayout:
         id:buttons
-
+           
 <ButtonsLayout>:
-    Button:
-        id:other
-        on_press: root.select_camera('toggle')
-        height: self.width
-        width: self.height
-        background_normal: 'camera.png'
-        background_down:   'camera.png'
-    Button:
-        id:status
-        font_size: sp(30)
-        height: pt(self.font_size)
-        color: rgba("#43ff64d9")
-        text: '0'
-        background_color: 0, 0, 0, 0
-    Button:
-        id:identify
-        font_size: sp(30)
-        height: pt(self.font_size)
-        color: rgba("#43ff64d9")
-        text: 'DESCONOCIDO'
-        background_color: 0, 0, 0, 0
+    GridLayout:
+        rows: 2
+        BoxLayout:
+            size_hint_y: 0.2
+            Button:
+                id:status
+                font_size: sp(20)
+                height: pt(self.font_size)
+                color: rgba("#43ff64d9")
+                text: '0'
+                background_color: 0, 0, 0, 0
+            Button:
+                id:identify
+                font_size: sp(20)
+                height: pt(self.font_size)
+                color: rgba("#43ff64d9")
+                text: 'DESCONOCIDO'
+                background_color: 0, 0, 0, 0
+            Button:
+                id:other
+                on_press: root.select_camera('toggle')
+                height: self.width
+                width: self.height
+                background_normal: 'camera.png'
+                background_down:   'camera.png'
+        BoxLayout:
+            size_hint_y: 0.12
+            TextInput:
+                id: input
+                text: 'http://192.168.0.7:5001/identificar'
+                font_size: sp(20)
+                multiline: False
+                height: pt(self.font_size)
 """)
