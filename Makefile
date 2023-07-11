@@ -17,6 +17,7 @@ dependens:
 	pip install buildozer
 	pip install cython==0.29.35
 	pip install Kivy
+	pip install camera4kivy
 
 android:
 	buildozer -v android debug
