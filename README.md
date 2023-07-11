@@ -22,3 +22,5 @@ Librerías usadas:
 - Kivy (https://kivy.org/)
 - Camera4Kivy (https://github.com/Android-for-Python/Camera4Kivy)
 
+Servidor usado:
+- Rostro Biométrico (https://github.com/RicardoValladares/FaceDetect)
